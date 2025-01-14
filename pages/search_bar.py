@@ -44,7 +44,6 @@ if fetch_button:
 
 
     # 그래프 그리기
-    st.markdown(f"#### [{company}] 종가(Close) 차트")
     fig, ax = plt.subplots()
     ax.plot(df["Date"], df["Close"])
     ax.set_xlabel("날짜")
@@ -52,27 +51,30 @@ if fetch_button:
     ax.set_title(f"{company} 종가 추세")
     st.pyplot(fig)
 
-
+    #버튼 가로로 배치
+    col1,col2=st.columns(2)
+    
     # 다운로드 버튼
-    st.download_button(
-        label="CSV 파일 다운로드",
-        data=df.to_csv(index=False).encode("utf-8"),
-        file_name=f"{company}_stock_data.csv",
-        mime="text/csv",
-    )
-    
-    def to_excel(df):
-        # 엑셀 파일로 변환
-        output = BytesIO()# 바이너리 데이터로 다루기
-        with pd.ExcelWriter(output, engine="openpyxl") as writer:
-            df.to_excel(writer, index=False, sheet_name="Stock Data")
-        return output.getvalue()
+    with col1:
+        st.download_button(
+            label="CSV 파일 다운로드",
+            data=df.to_csv(index=False).encode("utf-8"),
+            file_name=f"{company}_stock_data.csv",
+            mime="text/csv",
+        )
+    with col2:
+        def to_excel(df):
+            # 엑셀 파일로 변환
+            output = BytesIO()# 바이너리 데이터로 다루기
+            with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                df.to_excel(writer, index=False, sheet_name="Stock Data")
+            return output.getvalue()
 
-    excel_data = to_excel(df)
-    
-    st.download_button(
-        label="엑셀 파일 다운로드",
-        data=excel_data,    
-        file_name=f"{company}_stock_data.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    )
+        excel_data = to_excel(df)
+        
+        st.download_button(
+            label="엑셀 파일 다운로드",
+            data=excel_data,    
+            file_name=f"{company}_stock_data.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
