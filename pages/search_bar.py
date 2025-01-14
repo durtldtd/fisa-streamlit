@@ -6,7 +6,7 @@ import datetime
 #test를 입력하는 검색창을 하나 만듭니다.
 #ani_list에 있는 글자가 일부라도들어가면
 #img_list에 있는 해당 그림이 출력되는 검색창을 하나 만들어 주세요
-
+st.write("무슨 주식을 사야 부자가 되려나..")
 # 사이드바 입력
 st.sidebar.markdown("### 회사 이름과 기간을 입력하세요")
 company = st.sidebar.text_input("회사 이름", value="삼성전자")
