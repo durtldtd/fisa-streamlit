@@ -72,7 +72,7 @@ if fetch_button:
     
     st.download_button(
         label="엑셀 파일 다운로드",
-        data=df.to_excel(index=False, engine="openpyxl").to_excel(),
+        data=excel_data,    
         file_name=f"{company}_stock_data.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )
