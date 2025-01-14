@@ -45,7 +45,7 @@ st.date_input("Your birthday")
 st.time_input("Meeting time")
 st.file_uploader("Upload a CSV")
 st.audio_input("Record a voice message")
-st.camera_input("Take a picture")
+#st.camera_input("Take a picture")
 st.color_picker("Pick a color")
 
 
