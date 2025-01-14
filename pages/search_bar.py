@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib.pyplot as plt
-
+from io import BytesIO
 #test를 입력하는 검색창을 하나 만듭니다.
 #ani_list에 있는 글자가 일부라도들어가면
 #img_list에 있는 해당 그림이 출력되는 검색창을 하나 만들어 주세요
@@ -60,6 +60,16 @@ if fetch_button:
         file_name=f"{company}_stock_data.csv",
         mime="text/csv",
     )
+    
+    def to_excel(df):
+        # 엑셀 파일로 변환
+        output = BytesIO()# 바이너리 데이터로 다루기
+        with pd.ExcelWriter(output, engine="openpyxl") as writer:
+            df.to_excel(writer, index=False, sheet_name="Stock Data")
+        return output.getvalue()
+
+    excel_data = to_excel(df)
+    
     st.download_button(
         label="엑셀 파일 다운로드",
         data=df.to_excel(index=False, engine="openpyxl").to_excel(),
