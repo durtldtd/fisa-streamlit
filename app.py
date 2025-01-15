@@ -87,7 +87,7 @@ st.json({"foo":"bar","fu":"ba"})#딕셔너리 형태로
 st.metric("My metric", 42, 2)# 수치로
 
 st.image("https://i.imgur.com/t2ewhfH.png",width=50)
-st.audio(test_audio)
+#st.audio(test_audio)
 #st.video(data)
 #st.video(data, subtitles="./subs.vtt")
 st.logo("https://i.imgur.com/t2ewhfH.png")
