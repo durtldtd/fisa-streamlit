@@ -25,9 +25,17 @@ def get_ticker_symbol(company_name):
     code = df[df['회사명']==company_name]['종목코드'].values    
     ticker_symbol = code[0]
     return ticker_symbol
-
+#stock_name을 입력받는 입력창
+stock_name=st.text_input('이름을 입력하세요')
 # 코드 조각 추가
-ticker_symbol = get_ticker_symbol(stock_name)     
+ticker_symbol = get_ticker_symbol(stock_name) 
+
+
+date_range = st.sidebar.date_input(
+    "시작일 - 종료일",
+    value=(datetime.date(2019, 1, 1), datetime.date(2024, 1, 15)),
+)
+
 start_p = date_range[0]               
 end_p = date_range[1] + datetime.timedelta(days=1) 
 df = fdr.DataReader(f'KRX:{ticker_symbol}', start_p, end_p)
